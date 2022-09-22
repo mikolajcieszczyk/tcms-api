@@ -3,7 +3,6 @@ import { Client, ClientDocument } from './client.model';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { CreateClientDto } from './dtos/create-client.dto';
-import { ClientDto } from './dtos/client.dto';
 import { UpdateClientDto } from './dtos/update-client.dto';
 
 @Injectable()
@@ -44,35 +43,13 @@ export class ClientsService {
   }
 
   async update(id: number, attributes: Partial<UpdateClientDto>) {
-    const updatedClient = await this.find(id);
+    const clientToUpdate = await this.find(id);
 
-    // if (attributes.name) {
-    //   updatedClient.name = attributes.name;
-    // }
-    // if (attributes.surname) {
-    //   updatedClient.surname = attributes.surname;
-    // }
-    // if (attributes.male) {
-    //   updatedClient.male = attributes.male;
-    // }
-    // if (attributes.age) {
-    //   updatedClient.age = attributes.age;
-    // }
-    // if (attributes.phone) {
-    //   updatedClient.phone = attributes.phone;
-    // }
-    // if (attributes.email) {
-    //   updatedClient.email = attributes.email;
-    // }
-    // if (attributes.skills) {
-    //   updatedClient.skills = attributes.skills;
-    // }
+    Object.assign(clientToUpdate, attributes);
 
-    Object.assign(updatedClient, attributes);
+    clientToUpdate.save();
 
-    updatedClient.save();
-
-    return updatedClient;
+    return clientToUpdate;
   }
 
   async remove(id: number) {

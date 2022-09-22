@@ -25,20 +25,20 @@ export class ClientsController {
     try {
       singleClientToFind = await this.clientsService.find(id);
     } catch (error) {
-      throw new NotFoundException('client not found');
+      throw new NotFoundException('Client not found');
     }
 
     return singleClientToFind;
   }
 
   @Get()
-  async getClients(): Promise<ClientDto> {
+  async getAllClients(): Promise<ClientDto> {
     let clientsToFind;
 
     try {
       clientsToFind = await this.clientsService.findAllClients();
     } catch (error) {
-      throw new NotFoundException('clients not found');
+      throw new NotFoundException('Clients not found');
     }
 
     return clientsToFind;
@@ -51,7 +51,9 @@ export class ClientsController {
     try {
       clientToAdd = await this.clientsService.create(body);
     } catch (error) {
-      throw new BadRequestException('something went wrong during adding user');
+      throw new BadRequestException(
+        'Something went wrong while adding a new client',
+      );
     }
 
     return clientToAdd;
@@ -64,7 +66,7 @@ export class ClientsController {
     try {
       clientToUpdate = await this.clientsService.update(id, body);
     } catch (error) {
-      throw new NotFoundException('user to remove not found');
+      throw new NotFoundException('Client to remove not found');
     }
 
     return clientToUpdate;
@@ -77,7 +79,7 @@ export class ClientsController {
     try {
       clientToRemove = await this.clientsService.remove(id);
     } catch (error) {
-      throw new NotFoundException('user to remove not found');
+      throw new NotFoundException('Client to remove not found');
     }
 
     return clientToRemove;
