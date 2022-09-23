@@ -8,12 +8,15 @@ import {
   Delete,
   BadRequestException,
   Patch,
+  UseGuards,
 } from '@nestjs/common';
+import { AuthenticatedGuard } from 'src/auth/guards/authenticated.guard';
 import { ClientsService } from './clients.service';
 import { ClientDto } from './dtos/client.dto';
 import { CreateClientDto } from './dtos/create-client.dto';
 import { UpdateClientDto } from './dtos/update-client.dto';
 
+@UseGuards(AuthenticatedGuard)
 @Controller('clients')
 export class ClientsController {
   constructor(private readonly clientsService: ClientsService) {}

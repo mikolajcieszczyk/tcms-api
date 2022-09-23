@@ -13,3 +13,5 @@ export class SessionSerializer extends PassportSerializer {
     done(null, payload);
   }
 }
+
+// 8:40 wczoraj wpisz
