@@ -1,6 +1,8 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Type } from 'class-transformer';
 import { IsNotEmpty } from 'class-validator';
 import { Document } from 'mongoose';
+import { Booking, BookingSchema } from 'src/bookings/booking.model';
 
 export type CourtDocument = Court & Document;
 
@@ -33,9 +35,6 @@ export class Court extends Document {
   @Prop()
   @IsNotEmpty()
   placement: PlacementEnum;
-
-  @Prop()
-  bookings: string; // change
 }
 
 export const CourtSchema = SchemaFactory.createForClass(Court);

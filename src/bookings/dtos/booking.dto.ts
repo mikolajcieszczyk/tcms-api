@@ -5,7 +5,7 @@ export class BookingDto {
   id: number;
 
   @Expose()
-  date: Date;
+  date: string;
 
   @Expose()
   court: number;

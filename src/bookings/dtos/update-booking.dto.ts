@@ -1,9 +1,9 @@
-import { IsNumber, IsDate, IsOptional } from 'class-validator';
+import { IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class UpdateBookingDto {
-  @IsDate()
+  @IsString()
   @IsOptional()
-  date: Date;
+  date: string;
 
   @IsNumber()
   @IsOptional()

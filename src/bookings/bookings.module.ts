@@ -1,8 +1,9 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
+import { Court, CourtSchema } from 'src/courts/court.model';
 import { Booking, BookingSchema } from './booking.model';
-import { BookingsController } from './bookings.controller';
 import { BookingsService } from './bookings.service';
+import { BookingsController } from './bookings.controller';
 
 @Module({
   imports: [
@@ -12,8 +13,15 @@ import { BookingsService } from './bookings.service';
         schema: BookingSchema,
       },
     ]),
+    MongooseModule.forFeature([
+      {
+        name: Court.name,
+        schema: CourtSchema,
+      },
+    ]),
   ],
-  controllers: [BookingsController],
   providers: [BookingsService],
+  controllers: [BookingsController],
+  exports: [BookingsService],
 })
 export class BookingsModule {}

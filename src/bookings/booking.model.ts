@@ -11,7 +11,7 @@ export class Booking extends Document {
 
   @Prop({ unique: true })
   @IsNotEmpty()
-  date: Date;
+  date: string;
 
   @Prop()
   @IsNotEmpty()

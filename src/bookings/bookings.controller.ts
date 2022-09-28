@@ -9,6 +9,7 @@ import {
   Patch,
   Post,
 } from '@nestjs/common';
+import { CourtsService } from 'src/courts/courts.service';
 import { BookingsService } from './bookings.service';
 import { BookingDto } from './dtos/booking.dto';
 import { CreateBookingDto } from './dtos/create-booking.dto';

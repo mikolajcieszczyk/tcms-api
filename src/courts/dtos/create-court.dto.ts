@@ -1,5 +1,5 @@
 import { IsNumber, IsEnum, IsNotEmpty } from 'class-validator';
-import { SurfaceEnum, PlacementEnum } from '../court.model';
+import { SurfaceEnum, PlacementEnum, Court } from '../court.model';
 
 export class CreateCourtDto {
   @IsNumber()

@@ -16,7 +16,7 @@ import { CourtDto } from './dtos/court.dto';
 import { CreateCourtDto } from './dtos/create-court.dto';
 import { UpdateCourtDto } from './dtos/update-court.dto';
 
-@UseGuards(AuthenticatedGuard)
+// @UseGuards(AuthenticatedGuard)
 @Controller('courts')
 export class CourtsController {
   constructor(private readonly courtsService: CourtsService) {}
@@ -54,9 +54,7 @@ export class CourtsController {
     try {
       courtToAdd = await this.courtsService.create(body);
     } catch (error) {
-      throw new BadRequestException(
-        'Something went wrong while adding a new court',
-      );
+      throw new BadRequestException(error);
     }
 
     return courtToAdd;

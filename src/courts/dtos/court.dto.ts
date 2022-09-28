@@ -1,5 +1,5 @@
 import { Expose } from 'class-transformer';
-import { SurfaceEnum, PlacementEnum } from '../court.model';
+import { SurfaceEnum, PlacementEnum, Court } from '../court.model';
 
 export class CourtDto {
   @Expose()
