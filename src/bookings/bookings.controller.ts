@@ -9,7 +9,6 @@ import {
   Patch,
   Post,
 } from '@nestjs/common';
-import { CourtsService } from 'src/courts/courts.service';
 import { BookingsService } from './bookings.service';
 import { BookingDto } from './dtos/booking.dto';
 import { CreateBookingDto } from './dtos/create-booking.dto';
@@ -37,7 +36,7 @@ export class BookingsController {
     let bookingsToFind;
 
     try {
-      bookingsToFind = await this.bookingsService.findAllBookings();
+      bookingsToFind = await this.bookingsService.findAll();
     } catch (error) {
       throw new NotFoundException('Bookings not found');
     }
@@ -52,9 +51,7 @@ export class BookingsController {
     try {
       bookingToAdd = await this.bookingsService.create(body);
     } catch (error) {
-      throw new BadRequestException(
-        'Something went wrong while adding a new booking',
-      );
+      throw new BadRequestException(error);
     }
 
     return bookingToAdd;
@@ -67,7 +64,7 @@ export class BookingsController {
     try {
       bookingToUpdate = await this.bookingsService.update(id, body);
     } catch (error) {
-      throw new NotFoundException('Booking to remove not found');
+      throw new NotFoundException(error);
     }
 
     return bookingToUpdate;
@@ -80,7 +77,7 @@ export class BookingsController {
     try {
       bookingToRemove = await this.bookingsService.remove(id);
     } catch (error) {
-      throw new NotFoundException('Booking to remove not found');
+      throw new NotFoundException(error);
     }
 
     return bookingToRemove;

@@ -4,6 +4,11 @@ import { Document } from 'mongoose';
 
 export type BookingDocument = Booking & Document;
 
+interface IClientData {
+  name: string;
+  surname: string;
+}
+
 @Schema()
 export class Booking extends Document {
   @Prop()
@@ -12,6 +17,14 @@ export class Booking extends Document {
   @Prop({ unique: true })
   @IsNotEmpty()
   date: string;
+
+  @Prop()
+  @IsNotEmpty()
+  clientName: string;
+
+  @Prop()
+  @IsNotEmpty()
+  clientSurname: string;
 
   @Prop()
   @IsNotEmpty()

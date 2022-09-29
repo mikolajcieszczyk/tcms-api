@@ -4,6 +4,7 @@ import { Court, CourtSchema } from 'src/courts/court.model';
 import { Booking, BookingSchema } from './booking.model';
 import { BookingsService } from './bookings.service';
 import { BookingsController } from './bookings.controller';
+import { CourtsService } from 'src/courts/courts.service';
 
 @Module({
   imports: [
@@ -11,12 +12,6 @@ import { BookingsController } from './bookings.controller';
       {
         name: Booking.name,
         schema: BookingSchema,
-      },
-    ]),
-    MongooseModule.forFeature([
-      {
-        name: Court.name,
-        schema: CourtSchema,
       },
     ]),
   ],

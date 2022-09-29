@@ -3,7 +3,6 @@ import { CourtsService } from './courts.service';
 import { CourtsController } from './courts.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Court, CourtSchema } from './court.model';
-import { Booking, BookingSchema } from 'src/bookings/booking.model';
 
 @Module({
   imports: [
@@ -11,12 +10,6 @@ import { Booking, BookingSchema } from 'src/bookings/booking.model';
       {
         name: Court.name,
         schema: CourtSchema,
-      },
-    ]),
-    MongooseModule.forFeature([
-      {
-        name: Booking.name,
-        schema: BookingSchema,
       },
     ]),
   ],

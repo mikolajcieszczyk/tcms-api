@@ -39,7 +39,7 @@ export class ClientsController {
     let clientsToFind;
 
     try {
-      clientsToFind = await this.clientsService.findAllClients();
+      clientsToFind = await this.clientsService.findAll();
     } catch (error) {
       throw new NotFoundException('Clients not found');
     }

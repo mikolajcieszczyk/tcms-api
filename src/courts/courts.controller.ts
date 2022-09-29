@@ -28,7 +28,7 @@ export class CourtsController {
     try {
       singleCourtToFind = await this.courtsService.find(number);
     } catch (error) {
-      throw new NotFoundException('Court not found');
+      throw new NotFoundException('Court not found', error);
     }
 
     return singleCourtToFind;
@@ -39,9 +39,9 @@ export class CourtsController {
     let courtsToFind;
 
     try {
-      courtsToFind = await this.courtsService.findAllCourts();
+      courtsToFind = await this.courtsService.findAll();
     } catch (error) {
-      throw new NotFoundException('Courts not found');
+      throw new NotFoundException('Courts not found', error);
     }
 
     return courtsToFind;
@@ -54,7 +54,10 @@ export class CourtsController {
     try {
       courtToAdd = await this.courtsService.create(body);
     } catch (error) {
-      throw new BadRequestException(error);
+      throw new BadRequestException(
+        'Something went wrong while adding court',
+        error,
+      );
     }
 
     return courtToAdd;
@@ -70,7 +73,7 @@ export class CourtsController {
     try {
       courtToUpdate = await this.courtsService.update(number, body);
     } catch (error) {
-      throw new NotFoundException('Court to remove not found');
+      throw new NotFoundException('Court to update not found');
     }
 
     return courtToUpdate;

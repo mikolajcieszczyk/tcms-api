@@ -18,7 +18,7 @@ export class ClientsService {
     return client;
   }
 
-  async findAllClients() {
+  async findAll() {
     const clients = await this.clientModel.find().exec();
 
     return clients.map((client) => {

@@ -7,10 +7,10 @@ export class AuthService {
   constructor(private readonly usersService: UsersService) {}
 
   async validateUser(username: string, password: string): Promise<any> {
-    const user = await this.usersService.getUser(username);
+    const user = await this.usersService.find(username);
     const passwordValid = await bcrypt.compare(password, user.password);
     if (!user) {
-      throw new NotAcceptableException('could not find the user');
+      throw new NotAcceptableException('Could not find the user');
     }
     if (user && passwordValid) {
       return {
