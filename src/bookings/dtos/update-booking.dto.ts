@@ -3,7 +3,15 @@ import { IsNumber, IsOptional, IsString } from 'class-validator';
 export class UpdateBookingDto {
   @IsString()
   @IsOptional()
-  date: string;
+  clientName: string;
+
+  @IsString()
+  @IsOptional()
+  start: Date;
+
+  @IsString()
+  @IsOptional()
+  end: string;
 
   @IsNumber()
   @IsOptional()

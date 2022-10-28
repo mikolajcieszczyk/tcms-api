@@ -51,10 +51,14 @@ export class UsersController {
   login(@Request() req): any {
     const user = req.user;
     const message = 'User successfully logged!';
+    const status = req.socket._httpMessage.statusCode;
+    const token = req.sessionID;
 
     const result = {
       User: user,
       msg: message,
+      status: status,
+      token: token,
     };
 
     return result;

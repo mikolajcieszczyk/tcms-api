@@ -2,7 +2,7 @@ import { Expose } from 'class-transformer';
 
 export class ClientDto {
   @Expose()
-  id: number;
+  id: string;
 
   @Expose()
   name: string;
@@ -11,13 +11,13 @@ export class ClientDto {
   surname: string;
 
   @Expose()
-  male: string;
+  gender: string;
 
   @Expose()
   age: number;
 
   @Expose()
-  phone: number;
+  phone: string;
 
   @Expose()
   email: string;

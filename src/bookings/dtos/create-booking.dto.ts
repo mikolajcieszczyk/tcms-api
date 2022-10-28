@@ -2,14 +2,17 @@ import { IsNumber, IsNotEmpty, IsString } from 'class-validator';
 
 export class CreateBookingDto {
   @IsString()
-  @IsNotEmpty()
-  date: string;
+  clientName: string;
 
-  @IsNotEmpty()
+  @IsString()
+  start: Date;
+
+  @IsString()
+  end: Date;
+
   @IsNumber()
   court: number;
 
-  @IsNotEmpty()
   @IsNumber()
   price: number;
 }

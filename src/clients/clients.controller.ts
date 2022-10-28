@@ -9,20 +9,26 @@ import {
   BadRequestException,
   Patch,
   UseGuards,
+  ParseIntPipe,
+  HttpStatus,
 } from '@nestjs/common';
+import mongoose from 'mongoose';
 import { AuthenticatedGuard } from 'src/auth/guards/authenticated.guard';
 import { ClientsService } from './clients.service';
 import { ClientDto } from './dtos/client.dto';
 import { CreateClientDto } from './dtos/create-client.dto';
 import { UpdateClientDto } from './dtos/update-client.dto';
 
-@UseGuards(AuthenticatedGuard)
+// @UseGuards(AuthenticatedGuard)
 @Controller('clients')
 export class ClientsController {
   constructor(private readonly clientsService: ClientsService) {}
 
   @Get('/:id')
-  async getSingleClient(@Param('id') id: number): Promise<ClientDto> {
+  async getSingleClient(
+    @Param('id')
+    id: number,
+  ): Promise<ClientDto> {
     let singleClientToFind: ClientDto;
 
     try {
@@ -53,7 +59,9 @@ export class ClientsController {
 
     try {
       clientToAdd = await this.clientsService.create(body);
+      console.log(clientToAdd);
     } catch (error) {
+      console.log(error);
       throw new BadRequestException(
         'Something went wrong while adding a new client',
       );
@@ -67,6 +75,8 @@ export class ClientsController {
     let clientToUpdate;
 
     try {
+      console.log(clientToUpdate);
+
       clientToUpdate = await this.clientsService.update(id, body);
     } catch (error) {
       throw new NotFoundException('Client to remove not found');
@@ -76,12 +86,14 @@ export class ClientsController {
   }
 
   @Delete('/remove/:id')
-  async deleteClient(@Param('id') id: number) {
-    let clientToRemove: ClientDto;
+  async deleteClient(@Param('id') id: any) {
+    let clientToRemove: any;
 
     try {
       clientToRemove = await this.clientsService.remove(id);
+      console.log(clientToRemove);
     } catch (error) {
+      console.log(error);
       throw new NotFoundException('Client to remove not found');
     }
 

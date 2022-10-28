@@ -13,6 +13,7 @@ export class ClientsService {
   ) {}
 
   async find(id: number) {
+    console.log(id);
     const client: Client = await this.clientModel.findById(id);
 
     return client;
@@ -26,7 +27,7 @@ export class ClientsService {
         id: client._id,
         name: client.name,
         surname: client.surname,
-        male: client.male,
+        gender: client.gender,
         age: client.age,
         phone: client.phone,
         email: client.email,
@@ -47,14 +48,18 @@ export class ClientsService {
 
     Object.assign(clientToUpdate, attributes);
 
+    console.log(clientToUpdate);
+
     clientToUpdate.save();
 
     return clientToUpdate;
   }
 
   async remove(id: number) {
-    const client = await this.clientModel.findOne({ id });
+    const client = await this.clientModel.find({ id }).exec();
 
-    return this.clientModel.remove(client);
+    console.log(client);
+
+    return this.clientModel.deleteOne({ _id: id });
   }
 }

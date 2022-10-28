@@ -20,13 +20,13 @@ export class CreateClientDto {
   surname: string;
 
   @IsString({ message: 'Male field should be a typeof string' })
-  male: string;
+  gender: string;
 
   @IsNumber()
   age: number;
 
-  @IsNumber()
-  phone: number;
+  @IsString()
+  phone: string;
 
   @IsEmail()
   email: string;

@@ -1,13 +1,12 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
-import { Booking, BookingSchema } from 'src/bookings/booking.model';
 
 export type ClientDocument = Client & Document;
 
 @Schema()
 export class Client extends Document {
   @Prop()
-  id: number;
+  id: string;
 
   @Prop()
   name: string;
@@ -16,22 +15,19 @@ export class Client extends Document {
   surname: string;
 
   @Prop()
-  male: string;
+  gender: string;
 
   @Prop()
   age: number;
 
-  @Prop({ unique: true })
-  phone: number;
+  @Prop()
+  phone: string;
 
-  @Prop({ unique: true })
+  @Prop()
   email: string;
 
   @Prop()
   skills: string;
-
-  @Prop({ type: BookingSchema })
-  bookings: Booking; // change
 }
 
 export const ClientSchema = SchemaFactory.createForClass(Client);

@@ -24,7 +24,9 @@ export class BookingsService {
     return bookings.map((booking) => {
       return {
         id: booking._id,
-        date: booking.date,
+        clientName: booking.clientName,
+        start: booking.start,
+        end: booking.end,
         court: booking.court,
         price: booking.price,
       };
@@ -48,9 +50,13 @@ export class BookingsService {
     return bookingToUpdate;
   }
 
-  async remove(id: number) {
-    const booking = await this.bookingModel.findOne({ id });
+  async remove(id: string) {
+    const booking = await this.bookingModel.find({ id }).exec();
 
-    return this.bookingModel.remove(booking);
+    console.log(booking);
+
+    console.log('auauauauuaua');
+
+    return this.bookingModel.deleteOne({ _id: id });
   }
 }

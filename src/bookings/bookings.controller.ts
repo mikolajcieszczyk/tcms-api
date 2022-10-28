@@ -9,6 +9,7 @@ import {
   Patch,
   Post,
 } from '@nestjs/common';
+import { ObjectId } from 'mongoose';
 import { BookingsService } from './bookings.service';
 import { BookingDto } from './dtos/booking.dto';
 import { CreateBookingDto } from './dtos/create-booking.dto';
@@ -20,7 +21,7 @@ export class BookingsController {
 
   @Get('/:id')
   async getSingleBooking(@Param('id') id: number): Promise<BookingDto> {
-    let singleBookingToFind: BookingDto;
+    let singleBookingToFind;
 
     try {
       singleBookingToFind = await this.bookingsService.find(id);
@@ -51,6 +52,7 @@ export class BookingsController {
     try {
       bookingToAdd = await this.bookingsService.create(body);
     } catch (error) {
+      console.log(error);
       throw new BadRequestException(error);
     }
 
@@ -71,12 +73,14 @@ export class BookingsController {
   }
 
   @Delete('/remove/:id')
-  async deleteBooking(@Param('id') id: number) {
-    let bookingToRemove: BookingDto;
+  async deleteBooking(@Param('id') id: string) {
+    let bookingToRemove: any;
+    console.log(id);
 
     try {
       bookingToRemove = await this.bookingsService.remove(id);
     } catch (error) {
+      console.log(error);
       throw new NotFoundException(error);
     }
 

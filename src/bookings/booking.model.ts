@@ -12,26 +12,21 @@ interface IClientData {
 @Schema()
 export class Booking extends Document {
   @Prop()
-  id: number;
-
-  @Prop({ unique: true })
-  @IsNotEmpty()
-  date: string;
+  id: string;
 
   @Prop()
-  @IsNotEmpty()
   clientName: string;
 
   @Prop()
-  @IsNotEmpty()
-  clientSurname: string;
+  start: Date;
 
   @Prop()
-  @IsNotEmpty()
+  end: Date;
+
+  @Prop()
   court: number;
 
   @Prop()
-  @IsNotEmpty()
   price: number;
 }
 

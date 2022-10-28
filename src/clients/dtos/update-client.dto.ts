@@ -11,15 +11,15 @@ export class UpdateClientDto {
 
   @IsString()
   @IsOptional()
-  male: string;
+  gender: string;
 
   @IsNumber()
   @IsOptional()
   age: number;
 
-  @IsNumber()
+  @IsString()
   @IsOptional()
-  phone: number;
+  phone: string;
 
   @IsEmail()
   @IsOptional()
